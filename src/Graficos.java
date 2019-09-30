@@ -3,6 +3,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
+import java.awt.image.BufferedImage;
 
 import javax.swing.JFrame;
 
@@ -13,11 +14,14 @@ public class Graficos extends Canvas implements Runnable{
 	private boolean isRunning = true;
 	private final int WIDTH = 160; //Largura da janela grafica
 	private final int HEIGHT = 120; // Altura da janela grafica
-	private final int SCALE = 3; // Escala da janela grafica
+	private final int SCALE = 4; // Escala da janela grafica
+	
+	private BufferedImage image;
 	
 	public Graficos(){
 		setPreferredSize(new Dimension(WIDTH*SCALE, HEIGHT*SCALE));
 		initFrame();
+		image = new BufferedImage(WIDTH,HEIGHT,BufferedImage.TYPE_INT_RGB); //largura, altura, tipo da imagem
 	}
 	
 	public void initFrame() {
@@ -59,11 +63,14 @@ public class Graficos extends Canvas implements Runnable{
 			
 		}
 		
-		Graphics g = bs.getDrawGraphics(); //Para começar a renderizar na tela
-		g.setColor(new Color(19,19,19));
-		g.fillRect(0, 0, 160, 120); //Renderizando um retangulo
+		Graphics g = image.getGraphics(); //Para começar a renderizar na tela
+		g.setColor(new Color(100,149,119));
+		g.fillRect(0, 0, WIDTH, HEIGHT); //Renderizando um retangulo
+		g = bs.getDrawGraphics();
+		g.drawImage(image, 0, 0, WIDTH*SCALE, HEIGHT*SCALE, null);
 		bs.show(); //Para mostrar de fato os graficos
 	}
+	
 	
 	@Override
 	public void run() {
