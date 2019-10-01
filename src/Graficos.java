@@ -16,14 +16,14 @@ public class Graficos extends Canvas implements Runnable{
 	private boolean isRunning = true;
 	private final int WIDTH = 240; //Largura da janela grafica
 	private final int HEIGHT = 160; // Altura da janela grafica
-	private final int SCALE = 3; // Escala da janela grafica
+	private final int SCALE = 5; // Escala da janela grafica
 	
 	private BufferedImage image;
 	
 	private Spritesheet sheet;
 	private BufferedImage[] player;
 	private int frames = 0;
-	private int maxFrames = 20; //Quanto menor mais rapido
+	private int maxFrames = 10; //Quanto menor mais rapido
 	private int curAnimation = 0, maxAnimation = 3;
 	
 	public Graficos(){
@@ -75,7 +75,7 @@ public class Graficos extends Canvas implements Runnable{
 		if(frames > maxFrames) {
 			frames = 0;
 			curAnimation++;
-			if(curAnimation >= maxAnimation) {
+			if(curAnimation > maxAnimation) {
 				curAnimation = 0;
 			}
 		}
