@@ -9,7 +9,7 @@ import java.awt.image.BufferedImage;
 
 import javax.swing.JFrame;
 
-public class Graficos extends Canvas implements Runnable{
+public class Game extends Canvas implements Runnable{
 	
 	public static JFrame frame;
 	private Thread thread;
@@ -26,7 +26,7 @@ public class Graficos extends Canvas implements Runnable{
 	private int maxFrames = 10; //Quanto menor mais rapido
 	private int curAnimation = 0, maxAnimation = 3;
 	
-	public Graficos(){
+	public Game(){
 		sheet = new Spritesheet("/Spritesheet.png");
 		player = new BufferedImage[4];
 		player[0] = sheet.getSprite(0, 0, 16, 16);
@@ -65,7 +65,7 @@ public class Graficos extends Canvas implements Runnable{
 	}
 	
 	public static void main(String[] args) {
-		Graficos game = new Graficos();
+		Game game = new Game();
 		game.start(); // Aqui o jogo inicia de fato
 	}
 	
